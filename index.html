@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Premium Earn</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- 1. Premium Hypnotic Background --- */
+        body {
+            margin: 0; padding: 0;
+            background-color: #050505; /* Deep Pure Dark */
+            height: 100dvh; overflow: hidden;
+            display: flex; justify-content: center;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: white; user-select: none; /* Text selection disable (Anti-copy) */
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Glowing Floating Orbs */
+        .bg-orb {
+            position: absolute; border-radius: 50%;
+            filter: blur(80px); z-index: 1;
+            animation: float 10s infinite alternate ease-in-out;
+        }
+        .orb-1 { width: 300px; height: 300px; background: rgba(10, 132, 255, 0.35); top: -50px; left: -100px; }
+        .orb-2 { width: 250px; height: 250px; background: rgba(191, 90, 242, 0.25); bottom: -50px; right: -50px; animation-duration: 15s; }
+        .orb-3 { width: 200px; height: 200px; background: rgba(50, 215, 75, 0.15); top: 40%; left: 30%; animation-duration: 12s; }
+        
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); }
+            100% { transform: translateY(40px) translateX(40px); }
+        }
+
+        /* --- 2. Glassmorphism App UI --- */
+        #app-container {
+            width: 100%; max-width: 414px; height: 100%;
+            background: rgba(20, 20, 22, 0.6);
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 10; position: relative;
+            display: flex; flex-direction: column; box-shadow: 0 0 40px rgba(0,0,0,0.5);
+        }
+
+        header {
+            padding: 50px 20px 20px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .balance-badge {
+            background: rgba(0,0,0,0.4); padding: 10px 16px;
+            border-radius: 20px; font-weight: 700; font-size: 18px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .content-area { padding: 25px 20px; flex: 1; overflow-y: auto; }
+        .content-area::-webkit-scrollbar { display: none; }
+
+        /* Premium Buttons */
+        .glass-btn {
+            width: 100%; padding: 20px; margin-bottom: 18px;
+            border-radius: 18px; font-size: 16px; font-weight: 600;
+            color: white; border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.05);
+            cursor: pointer; transition: 0.2s ease;
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            position: relative; overflow: hidden;
+        }
+        .glass-btn:active { transform: scale(0.95); }
+        .btn-short:hover { background: rgba(10, 132, 255, 0.2); border-color: rgba(10, 132, 255, 0.4); }
+        .btn-long:hover { background: rgba(191, 90, 242, 0.2); border-color: rgba(191, 90, 242, 0.4); }
+
+        /* Bottom Nav */
+        .glass-nav {
+            display: flex; justify-content: space-around; padding: 15px 10px 25px 10px;
+            background: rgba(10, 10, 10, 0.7);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .nav-item { color: #8E8E93; font-size: 22px; cursor: pointer; transition: 0.3s; }
+        .nav-item.active { color: #0A84FF; text-shadow: 0 0 12px rgba(10,132,255,0.6); transform: translateY(-3px); }
+    </style>
+</head>
+<body>
+
+    <!-- Background Orbs -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <!-- Main App -->
+    <div id="app-container">
+        
+        <header>
+            <div>
+                <p style="color: #8E8E93; font-size: 13px; margin:0 0 5px 0;">Welcome back,</p>
+                <h2 style="margin: 0; font-size: 24px; font-weight: 700;">Alok</h2>
+            </div>
+            <div class="balance-badge">
+                <i class="fa-solid fa-coins" style="color: #FFD700; margin-right: 5px;"></i> <span id="user-coins">4500</span>
+            </div>
+        </header>
+
+        <div class="content-area">
+            <h3 style="color: #8E8E93; font-size: 15px; margin-bottom: 20px; font-weight: 500;">Earn Rewards</h3>
+            
+            <button class="glass-btn btn-short" onclick="playAd(1)">
+                <i class="fa-solid fa-bolt" style="color: #0A84FF; font-size: 20px;"></i> 
+                Watch Short Ad (1 Coin)
+            </button>
+            
+            <button class="glass-btn btn-long" onclick="playAd(2)">
+                <i class="fa-solid fa-link" style="color: #BF5AF2; font-size: 20px;"></i> 
+                Complete Long Task (2 Coins)
+            </button>
+        </div>
+
+        <nav class="glass-nav">
+            <div class="nav-item active"><i class="fa-solid fa-house"></i></div>
+            <div class="nav-item"><i class="fa-solid fa-wallet"></i></div>
+            <div class="nav-item"><i class="fa-solid fa-gear"></i></div>
+        </nav>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 🛡️ SECURITY SYSTEM (Anti-Cheat & VPN) 🛡️ -->
+    <!-- ========================================== -->
+    <script>
+        // 1. Anti-Clicker (Detecting very fast fake clicks)
+        let lastClickTime = 0;
+        document.addEventListener('click', function(e) {
+            let currentTime = new Date().getTime();
+            if (currentTime - lastClickTime < 200) { // If click is faster than 200ms
+                e.preventDefault();
+                e.stopPropagation();
+                console.warn("Auto-clicker blocked!");
+            }
+            lastClickTime = currentTime;
+        }, true);
+
+        // 2. Block Inspect Element & Right Click
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) { // F12 & Ctrl+Shift+I
+                return false;
+            }
+        };
+
+        // 3. Ultra-Fast VPN & Proxy Detector
+        async function checkVPN() {
+            try {
+                // Free API to check user IP details
+                let response = await fetch('https://ipwho.is/');
+                let data = await response.json();
+                
+                // Check if connection is VPN, Proxy, or Tor
+                if(data.security && (data.security.vpn || data.security.proxy || data.security.tor)) {
+                    document.body.innerHTML = `
+                        <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; background:#000; color:white; font-family:sans-serif;">
+                            <i class="fa-solid fa-shield-halved" style="font-size: 60px; color: #FF3B30; margin-bottom: 20px;"></i>
+                            <h1 style="color:#FF3B30; margin:0 0 10px 0;">Access Denied</h1>
+                            <p style="color:#8E8E93; text-align:center; padding:0 20px;">Please turn off your VPN or Proxy to use this app.</p>
+                        </div>
+                    `;
+                }
+            } catch(error) {
+                console.log("Security check active.");
+            }
+        }
+        checkVPN(); // Run security check on app start
+
+        // Dummy Ad Function for testing
+        function playAd(coins) {
+            alert("Checking for available ads... Earn: " + coins + " Coins");
+        }
+    </script>
+
+    <!-- Connect Firebase Config File -->
+    <script type="module">
+        // Importing the file you just created!
+        import { db, auth } from './firebase-config.js';
+        console.log("Firebase Database Connected Securely!");
+    </script>
+
+</body>
+  </html>
+  

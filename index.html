@@ -7,79 +7,105 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* --- 1. Premium Hypnotic Background --- */
+        /* --- 1. Premium Hypnotic Background (BRIGHTER NOW) --- */
         body {
             margin: 0; padding: 0;
-            background-color: #050505; /* Deep Pure Dark */
+            background-color: #000000;
             height: 100dvh; overflow: hidden;
             display: flex; justify-content: center;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            color: white; user-select: none; /* Text selection disable (Anti-copy) */
+            color: white; user-select: none;
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Glowing Floating Orbs */
         .bg-orb {
             position: absolute; border-radius: 50%;
-            filter: blur(80px); z-index: 1;
-            animation: float 10s infinite alternate ease-in-out;
+            filter: blur(60px); z-index: 1; /* Blur kam kiya taki colors sharp dikhein */
+            animation: float 8s infinite alternate ease-in-out;
         }
-        .orb-1 { width: 300px; height: 300px; background: rgba(10, 132, 255, 0.35); top: -50px; left: -100px; }
-        .orb-2 { width: 250px; height: 250px; background: rgba(191, 90, 242, 0.25); bottom: -50px; right: -50px; animation-duration: 15s; }
-        .orb-3 { width: 200px; height: 200px; background: rgba(50, 215, 75, 0.15); top: 40%; left: 30%; animation-duration: 12s; }
+        /* Orbs ki opacity badha di hai */
+        .orb-1 { width: 350px; height: 350px; background: rgba(10, 132, 255, 0.6); top: -50px; left: -100px; }
+        .orb-2 { width: 300px; height: 300px; background: rgba(191, 90, 242, 0.5); bottom: -50px; right: -50px; animation-duration: 12s; }
+        .orb-3 { width: 250px; height: 250px; background: rgba(50, 215, 75, 0.4); top: 35%; left: 20%; animation-duration: 10s; }
         
         @keyframes float {
-            0% { transform: translateY(0) translateX(0); }
-            100% { transform: translateY(40px) translateX(40px); }
+            0% { transform: translateY(0) translateX(0) scale(1); }
+            100% { transform: translateY(50px) translateX(50px) scale(1.1); }
         }
 
         /* --- 2. Glassmorphism App UI --- */
         #app-container {
             width: 100%; max-width: 414px; height: 100%;
-            background: rgba(20, 20, 22, 0.6);
-            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(15, 15, 18, 0.65);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 10; position: relative;
-            display: flex; flex-direction: column; box-shadow: 0 0 40px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column;
+        }
+
+        /* --- Login Screen Overlay --- */
+        #login-screen {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 10, 12, 0.95); z-index: 999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            backdrop-filter: blur(10px); transition: 0.5s ease;
+        }
+        .google-btn {
+            background: white; color: black; border: none; padding: 15px 30px;
+            border-radius: 25px; font-size: 16px; font-weight: bold; cursor: pointer;
+            display: flex; align-items: center; gap: 10px; margin-top: 20px;
         }
 
         header {
-            padding: 50px 20px 20px 20px;
+            padding: 40px 20px 20px 20px;
             display: flex; justify-content: space-between; align-items: center;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
         .balance-badge {
-            background: rgba(0,0,0,0.4); padding: 10px 16px;
+            background: rgba(0,0,0,0.5); padding: 10px 16px;
             border-radius: 20px; font-weight: 700; font-size: 18px;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.15);
         }
 
         .content-area { padding: 25px 20px; flex: 1; overflow-y: auto; }
         .content-area::-webkit-scrollbar { display: none; }
 
+        .section { display: none; animation: fadeIn 0.3s; }
+        .section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
         /* Premium Buttons */
         .glass-btn {
             width: 100%; padding: 20px; margin-bottom: 18px;
             border-radius: 18px; font-size: 16px; font-weight: 600;
-            color: white; border: 1px solid rgba(255,255,255,0.1);
-            background: rgba(255, 255, 255, 0.05);
+            color: white; border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.08);
             cursor: pointer; transition: 0.2s ease;
             display: flex; align-items: center; justify-content: center; gap: 12px;
-            position: relative; overflow: hidden;
         }
         .glass-btn:active { transform: scale(0.95); }
-        .btn-short:hover { background: rgba(10, 132, 255, 0.2); border-color: rgba(10, 132, 255, 0.4); }
-        .btn-long:hover { background: rgba(191, 90, 242, 0.2); border-color: rgba(191, 90, 242, 0.4); }
+        .btn-short:hover { background: rgba(10, 132, 255, 0.3); border-color: rgba(10, 132, 255, 0.6); }
+        .btn-long:hover { background: rgba(191, 90, 242, 0.3); border-color: rgba(191, 90, 242, 0.6); }
+
+        /* Inputs & Settings */
+        .glass-input {
+            width: 100%; padding: 18px; border-radius: 15px; margin-bottom: 15px;
+            background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1);
+            color: white; font-size: 16px; outline: none;
+        }
+        .setting-item {
+            padding: 20px; background: rgba(255,255,255,0.05);
+            border-radius: 15px; margin-bottom: 10px; display: flex;
+            justify-content: space-between; align-items: center;
+        }
 
         /* Bottom Nav */
         .glass-nav {
             display: flex; justify-content: space-around; padding: 15px 10px 25px 10px;
-            background: rgba(10, 10, 10, 0.7);
-            border-top: 1px solid rgba(255,255,255,0.05);
+            background: rgba(5, 5, 5, 0.85); border-top: 1px solid rgba(255,255,255,0.05);
         }
-        .nav-item { color: #8E8E93; font-size: 22px; cursor: pointer; transition: 0.3s; }
+        .nav-item { color: #8E8E93; font-size: 22px; cursor: pointer; transition: 0.3s; flex: 1; text-align: center; }
         .nav-item.active { color: #0A84FF; text-shadow: 0 0 12px rgba(10,132,255,0.6); transform: translateY(-3px); }
     </style>
 </head>
@@ -90,100 +116,123 @@
     <div class="bg-orb orb-2"></div>
     <div class="bg-orb orb-3"></div>
 
-    <!-- Main App -->
     <div id="app-container">
         
+        <!-- Login Screen -->
+        <div id="login-screen">
+            <i class="fa-solid fa-gem" style="font-size: 60px; color: #0A84FF; margin-bottom: 15px;"></i>
+            <h1 style="margin: 0; font-size: 28px;">Premium Earn</h1>
+            <p style="color: #8E8E93; margin-top: 5px;">Login to start earning</p>
+            <button class="google-btn" id="login-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" width="20">
+                Continue with Google
+            </button>
+        </div>
+
+        <!-- Header -->
         <header>
             <div>
                 <p style="color: #8E8E93; font-size: 13px; margin:0 0 5px 0;">Welcome back,</p>
-                <h2 style="margin: 0; font-size: 24px; font-weight: 700;">Alok</h2>
+                <h2 style="margin: 0; font-size: 20px; font-weight: 700;" id="user-name">Loading...</h2>
             </div>
             <div class="balance-badge">
-                <i class="fa-solid fa-coins" style="color: #FFD700; margin-right: 5px;"></i> <span id="user-coins">4500</span>
+                <i class="fa-solid fa-coins" style="color: #FFD700; margin-right: 5px;"></i> <span id="user-coins">0</span>
             </div>
         </header>
 
         <div class="content-area">
-            <h3 style="color: #8E8E93; font-size: 15px; margin-bottom: 20px; font-weight: 500;">Earn Rewards</h3>
             
-            <button class="glass-btn btn-short" onclick="playAd(1)">
-                <i class="fa-solid fa-bolt" style="color: #0A84FF; font-size: 20px;"></i> 
-                Watch Short Ad (1 Coin)
-            </button>
-            
-            <button class="glass-btn btn-long" onclick="playAd(2)">
-                <i class="fa-solid fa-link" style="color: #BF5AF2; font-size: 20px;"></i> 
-                Complete Long Task (2 Coins)
-            </button>
+            <!-- HOME TAB -->
+            <div id="tab-home" class="section active">
+                <h3 style="color: #8E8E93; font-size: 14px; margin-bottom: 15px;">Earn Rewards</h3>
+                <button class="glass-btn btn-short" onclick="alert('API Connection Pending')">
+                    <i class="fa-solid fa-bolt" style="color: #0A84FF; font-size: 20px;"></i> Watch Short Ad (1 Coin)
+                </button>
+                <button class="glass-btn btn-long" onclick="alert('API Connection Pending')">
+                    <i class="fa-solid fa-link" style="color: #BF5AF2; font-size: 20px;"></i> Complete Long Task (2 Coins)
+                </button>
+            </div>
+
+            <!-- WALLET TAB -->
+            <div id="tab-wallet" class="section">
+                <h2 style="margin: 0 0 20px 0;">Withdraw Funds</h2>
+                <input type="text" class="glass-input" placeholder="Enter UPI ID">
+                <button class="glass-btn btn-short" style="background: #32D74B; border-color: #32D74B;">
+                    Withdraw Now
+                </button>
+                <p style="color: #8E8E93; font-size: 12px; text-align: center;">Minimum withdrawal: 500 Coins (₹50)</p>
+            </div>
+
+            <!-- SETTINGS TAB -->
+            <div id="tab-settings" class="section">
+                <h2 style="margin: 0 0 20px 0;">Settings</h2>
+                <div class="setting-item">
+                    <span><i class="fa-solid fa-headset" style="color: #0A84FF; margin-right: 10px;"></i> Help & Support</span>
+                    <i class="fa-solid fa-chevron-right" style="color: #8E8E93;"></i>
+                </div>
+                <div class="setting-item" id="logout-btn" style="cursor: pointer; color: #FF3B30;">
+                    <span><i class="fa-solid fa-right-from-bracket" style="margin-right: 10px;"></i> Logout</span>
+                </div>
+            </div>
+
         </div>
 
+        <!-- Bottom Navigation -->
         <nav class="glass-nav">
-            <div class="nav-item active"><i class="fa-solid fa-house"></i></div>
-            <div class="nav-item"><i class="fa-solid fa-wallet"></i></div>
-            <div class="nav-item"><i class="fa-solid fa-gear"></i></div>
+            <div class="nav-item active" onclick="switchTab('tab-home', this)"><i class="fa-solid fa-house"></i></div>
+            <div class="nav-item" onclick="switchTab('tab-wallet', this)"><i class="fa-solid fa-wallet"></i></div>
+            <div class="nav-item" onclick="switchTab('tab-settings', this)"><i class="fa-solid fa-gear"></i></div>
         </nav>
     </div>
 
-    <!-- ========================================== -->
-    <!-- 🛡️ SECURITY SYSTEM (Anti-Cheat & VPN) 🛡️ -->
-    <!-- ========================================== -->
+    <!-- UI Logic Script -->
     <script>
-        // 1. Anti-Clicker (Detecting very fast fake clicks)
-        let lastClickTime = 0;
-        document.addEventListener('click', function(e) {
-            let currentTime = new Date().getTime();
-            if (currentTime - lastClickTime < 200) { // If click is faster than 200ms
-                e.preventDefault();
-                e.stopPropagation();
-                console.warn("Auto-clicker blocked!");
-            }
-            lastClickTime = currentTime;
-        }, true);
-
-        // 2. Block Inspect Element & Right Click
-        document.addEventListener('contextmenu', event => event.preventDefault());
-        document.onkeydown = function(e) {
-            if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) { // F12 & Ctrl+Shift+I
-                return false;
-            }
-        };
-
-        // 3. Ultra-Fast VPN & Proxy Detector
-        async function checkVPN() {
-            try {
-                // Free API to check user IP details
-                let response = await fetch('https://ipwho.is/');
-                let data = await response.json();
-                
-                // Check if connection is VPN, Proxy, or Tor
-                if(data.security && (data.security.vpn || data.security.proxy || data.security.tor)) {
-                    document.body.innerHTML = `
-                        <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; background:#000; color:white; font-family:sans-serif;">
-                            <i class="fa-solid fa-shield-halved" style="font-size: 60px; color: #FF3B30; margin-bottom: 20px;"></i>
-                            <h1 style="color:#FF3B30; margin:0 0 10px 0;">Access Denied</h1>
-                            <p style="color:#8E8E93; text-align:center; padding:0 20px;">Please turn off your VPN or Proxy to use this app.</p>
-                        </div>
-                    `;
-                }
-            } catch(error) {
-                console.log("Security check active.");
-            }
-        }
-        checkVPN(); // Run security check on app start
-
-        // Dummy Ad Function for testing
-        function playAd(coins) {
-            alert("Checking for available ads... Earn: " + coins + " Coins");
+        function switchTab(tabId, element) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            // Remove active class from nav items
+            document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+            // Show current tab
+            document.getElementById(tabId).classList.add('active');
+            element.classList.add('active');
         }
     </script>
 
-    <!-- Connect Firebase Config File -->
+    <!-- Firebase Real Connection Script -->
     <script type="module">
-        // Importing the file you just created!
-        import { db, auth } from './firebase-config.js';
-        console.log("Firebase Database Connected Securely!");
+        import { auth, db } from './firebase-config.js';
+        import { GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+        
+        const provider = new GoogleAuthProvider();
+
+        // 1. Google Login Button Click
+        document.getElementById('login-btn').addEventListener('click', () => {
+            signInWithPopup(auth, provider).catch((error) => {
+                alert("Login Error: " + error.message);
+            });
+        });
+
+        // 2. Logout Button Click
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            signOut(auth).then(() => {
+                location.reload(); // Page refresh after logout
+            });
+        });
+
+        // 3. Check User Status (Are they logged in?)
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is logged in, hide login screen
+                document.getElementById('login-screen').style.transform = 'translateY(-100%)';
+                document.getElementById('user-name').innerText = user.displayName;
+                // Coins will be fetched from database here in the next step
+                document.getElementById('user-coins').innerText = "0"; 
+            } else {
+                // User is not logged in, show login screen
+                document.getElementById('login-screen').style.transform = 'translateY(0)';
+            }
+        });
     </script>
 
 </body>
-  </html>
-  
+</html>
